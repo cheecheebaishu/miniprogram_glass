@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "购物车",
+  "disableScroll": true,
+  "usingComponents": {
+    "mp-slideview": "weui-miniprogram/slideview/slideview",
+    "van-popup": "@vant/weapp/popup/index"
+  }
+}

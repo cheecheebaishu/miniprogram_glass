@@ -1,0 +1,61 @@
+<view>
+  <view class="beijing">
+
+    <scroll-view scroll-y class='list' style='height:90vh'>
+      <view class="neirong">
+        <view class='item' wx:if="{{!isEdit}}" wx:for="{{list}}">
+
+          <view class='label' bindtap="labelFun" data-id="{{item.id}}">
+            <image wx:if="{{item.select}}" src='/images/choice_y.png'></image>
+            <image wx:else src='/images/choice_n.png'></image>
+          </view>
+          <mp-slideview buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" bindbuttontap="delete" data-id="{{item.id}}" data-frame="{{item.type}}" data-lensid="{{item.lensid}}" bind:longpress="editor">
+            <navigator class='content' hover-class="none" url="/pages/details/index?id={{item.frameid}}" data-id="{{item.id}}">
+              <image mode="aspectFit" src='{{item.image}}'></image>
+              <view class='text'>
+                <view class='title' style="width: 200px;">{{item.glassName}}</view>
+                <view class='spec'>规格：{{item.type}} {{item.glassLensBrand}}{{item.glassLensName}}{{item.refractivity}}</view>
+                <view class='price'>
+                  <text>¥{{item.price}}</text>
+                  <text>x{{item.count}}</text>
+                  <!-- <view class='up'>
+                  <text class='reduce {{item.count==1?"prohibit":""}}' catchtap='reduceFun' data-item="{{item}}">-</text>
+                  <input catchtap="none" type="number" value='{{item.count}}'></input>
+                  <text class="add" catchtap='plusFun' data-item="{{item}}">+</text>
+                </view> -->
+                </view>
+              </view>
+            </navigator>
+          </mp-slideview>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <van-popup show="{{ show }}" position="bottom" round closeable close-icon="close" custom-style="height: 50%;" bind:close="onClose">
+    <view>
+      <image class="img" wx:key="index" wx:for="{{typelist}}" src="{{item.typeimage}}" wx:if='{{frameindex==index? true:false}}'  data-index="{{index}}"></image>
+    </view>
+    <view></view>
+  </van-popup>
+  <view class='bottom' style='height:10vh'>
+    <view class='left'>
+      <view class='text'>
+        <view class='label' style='padding-left:16px;' bindtap='totalFun'>
+          <image wx:if="{{total}}" src='/images/choice_y.png'></image>
+          <image wx:else src='/images/choice_n.png'></image>
+        </view>
+        <text style='padding-left:10px;'>全选</text>
+      </view>
+      <view class='total-price' wx:if="{{!isEdit}}">
+        合计:<text style='color:#ff5f19;margin-right:10px;'>￥{{totalPrice}}</text>
+        <view style='font-size: 10px;margin-right:10px;'>不含运费</view>
+      </view>
+    </view>
+    <view class='{{totalPrice>0.1?"right":"right prohibit"}}' bindtap="closeFun" wx:if="{{!isEdit}}" style="position: relative; left: 1rpx; top: 0rpx">
+      结算
+    </view>
+    <view class='{{totalPrice>0.1?"right":"right prohibit"}}' bindtap="delFun" wx:if="{{isEdit}}">
+      删除
+    </view>
+  </view>
+</view>

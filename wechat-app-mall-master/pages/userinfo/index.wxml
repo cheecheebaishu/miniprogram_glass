@@ -1,0 +1,11 @@
+<view class="container">
+  <button class="images" style="padding: 0; margin-top: 100rpx; margin-bottom: 100rpx;" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+  <image class="avatar images" src="{{userAvatarUrl}}"></image>
+  </button>
+  
+  <view class="flex gd" style="margin-left: 40rpx; margin-top: 20rpx;">
+    <text class="gd">昵称：</text>
+    <input type="nickname" class="weui-input w200" data-type="userNickName" placeholder="请输入昵称" bindinput="handleInput" />
+  </view>
+  <button class="baocun" style="margin-top: 120rpx;" bindtap="baocun">保存</button>
+</view>

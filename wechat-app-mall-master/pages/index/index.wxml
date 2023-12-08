@@ -1,0 +1,56 @@
+<!--index.wxml-->
+<scroll-view class="container" scroll-y bindscrolltolower="lower">
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{list}}" wx:key="index">
+      <swiper-item>
+        <image src='{{item.image}}' style='width:100%;height:220px;' mode="aspectFit" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class='icon'>
+    <navigator hover-class="none" url="/pages/list/index?title=男士眼镜&id=5b8e37e34b640a63b33272dc">
+      <image src='/images/眼镜男子.png' mode="aspectFit"></image>
+      <text>男士眼镜</text>
+    </navigator>
+    <navigator hover-class="none" url="/pages/list/index?title=女士眼镜&id=5b8f45f2afb7c17788e11994">
+      <image src='/images/眼镜女子.png' mode="aspectFit"></image>
+      <text>女士眼镜</text>
+    </navigator>
+    <navigator hover-class="none" url="/pages/list/index?title=儿童眼镜&id=5b8f4603afb7c17788e11996">
+      <image src='/images/儿童.png' mode="aspectFit"></image>
+      <text>儿童眼镜</text>
+    </navigator>
+    <navigator hover-class="none" url="/pages/list/index?title=老年眼镜&id=5b8f4612afb7c17788e11998">
+      <image src='/images/老人.png' mode="aspectFit"></image>
+      <text>老年眼镜</text>
+    </navigator>
+  </view>
+  <!-- <view class='title'>
+    <text class='cn'>主题</text>
+    <text class='en'>Theme</text>d5e7f5d5e7f5d5e7f5d5e7f5d5e7f5d5e7f5d5e7f5d5e7f5d5e7f5d5e7f5
+  </view> -->
+  <!-- <view class='img'>
+    <image src='/images/banner_2.png' mode="widthFix"></image>
+    <image src='/images/banner_3.png' mode="widthFix"></image>
+    <image src='/images/banner_4.png' mode="widthFix"></image>
+  </view> -->
+  <view class='title'>
+    <text class='cn'>猜你喜欢</text>
+    <text class='en'>Lovely</text>
+  </view>
+
+  <view class='list'>
+    <view class='item' wx:for="{{list}}" wx:key="index">
+      <navigator hover-class="none" url="/pages/details/index?id={{item.framesid}}">
+        <image mode="aspectFit" class='product' src="{{item.image}}" style="width: 337rpx; height: 306rpx; display: block; box-sizing: border-box"></image>
+        <text class='text'>{{item.framesname}}</text>
+      </navigator>
+      <view class='price'>
+        <text>￥{{item.framesprice}}</text>
+        <view data-item="{{item}}">
+          <image style='width:20px;height:20px;' src='/images/Shopping.png'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

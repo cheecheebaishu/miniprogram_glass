@@ -1,0 +1,104 @@
+<view style='height:100vh;'>
+  <scroll-view scroll-y style='height:92vh'>
+    <swiper indicator-dots="{{indicatorDots}}" duration="{{duration}}">
+      <block wx:for="{{swipers}}" wx:key="index">
+        <swiper-item>
+          <image src='{{item}}' mode="aspectFill" style='height:60vh;' />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class='title'>
+      {{title}}
+      <view class='spec'>
+        {{data.spec}}
+      </view>
+    </view>
+    <view class='price'>
+      <text>￥{{framesprice}}</text>
+    </view>
+    <view class='freight'>
+      <view class='left'>
+        运费:免运费
+      </view>
+      <view class='right'>
+        销量：123{{count}}
+      </view>
+    </view>
+    <view class="speci" bind:tap="detail">
+      <text style="margin-left: 10px;color:grey;">选择</text>
+      <text style="margin-left: 10px;">型号：</text>
+      <text>{{framelist[frameindex].type}} {{lenslist[lensindex].lensbrand}}{{lenslist[lensindex].lensname}}</text>
+      <mp-icon extClass="into" icon="arrow" color="grey" size="{{22}}"></mp-icon>
+      <view style="margin-left: 50px;margin-top: 10px;">
+        <image wx:for="{{framelist}}" mode="" wx:key="index" src="{{item.typeimage}}" />
+      </view>
+
+    </view>
+    <view class='tab'>
+      <view class='left' bindtap="tabFun" data-state="{{1}}">
+        <text class='{{tabIs?"tab-acitve":""}}'>产品详情</text>
+      </view>
+      <view class='right' bindtap="tabFun" data-state="{{2}}">
+        <text class='{{!tabIs?"tab-acitve":""}}'>售后保障</text>
+      </view>
+    </view>
+    <view class='content' wx:if="{{tabIs}}">
+      <view wx:for="{{images}}" wx:key="index">
+        <image src='{{item}}' mode="aspectFill" style='height:60vh;' />
+      </view>
+    </view>
+    <view class='content' wx:if="{{!tabIs}}">
+      价格说明1 价格价为商品的销售价，是您最终决定是否购买商品的依据。2 .划线价：商品展示的划横线价格为参考价，该价格可能是品牌专柜标价、商品吊牌价或由品牌供应商提供的正品零售价（如厂商指导价、建议零售价等）或该商品在京东平台上曾经展示过的销售价；由于地区、时间的差异性和市场行情波动，品牌专柜标价、商品吊牌价等可能会与您购物时展示的不一致，该价格仅供您参考。3 .折扣：如无特殊说明，折扣指销售商在原价、或划线价（如品牌专柜标价、商品吊牌价、厂商指导价、厂商建议零售价）等某一价格基础上计算出的优惠比例或优惠金额；如有疑问，您可在购买前联系销售商进行咨询。4 .异常问题：商品促销信息以商品详情页“促销”栏中的信息为准；商品的具体售价以订单结算页价格为准；如您发现活动商品售价或促销信息有异常，建议购买前先联系销售商咨询。
+    </view>
+  </scroll-view>
+  <view class='bottom'>
+    <view class='icon' bindtap='goShopCar'>
+      <image src='/images/shopping_cart_return.png' style='width:20px;height:17px;'></image>
+      <text>购物车</text>
+    </view>
+    <!-- bindtap='specFun' -->
+    <view class='btn' bindtap='detail'>
+      加入购物车
+    </view>
+    <view class='btn' style='background: #FE4543;' bindtap='specFun'>
+      立即购买
+    </view>
+  </view>
+  <view class='popup' wx:if="{{specIs}}">
+    <view class='title'>
+      <view class='img'>
+        <image wx:for="{{framelist}}" wx:key="index" bindtap="imgClick" wx:if='{{frameindex==index? true:false}}' data-index='{{index}}' src='{{item.typeimage}}'></image>
+      </view>
+      <view class='text'>
+        <text>{{title}}</text>
+        <view>￥{{price}}</view>
+      </view>
+      <view class='icon' bindtap='specFun'>
+        <image src="/images/delete.png"></image>
+      </view>
+    </view>
+    <scroll-view scroll-y class='content'>
+      <view class='item'>
+        <text style='padding-top:10px;'>款式:</text>
+        <view class='list'>
+          <view wx:for="{{framelist}}" wx:key="index" bind:tap="chooseframe" class='{{frameindex==index?"active":""}}' data-index='{{index}}'>{{item.type}}</view>
+        </view>
+      </view>
+      <view class='item'>
+        <text>搭配套餐:</text>
+        <view class='list'>
+          <view wx:for="{{lenslist}}" wx:key="index" bind:tap="chooselens" class='{{lensindex==index?"active":""}}' data-index='{{index}}'>{{item.lensbrand}}-{{item.lensname}}</view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class='bottom'>
+      <view class='btn' bindtap='addCart'>
+        加入购物车
+      </view>
+      <view class='btn' style='background: #FE4543;' bindtap='done'>
+        立即购买
+      </view>
+    </view>
+
+  </view>
+</view>
