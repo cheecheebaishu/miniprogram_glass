@@ -6,7 +6,9 @@ Page({
    */
   data: {
     frameindex:null,
-    typelist:[],
+    type:[],
+    title:null,
+    typeimage:[],
     lenslist:[],
     frametype:null,
     lensid:null,
@@ -54,6 +56,17 @@ Page({
 
     this.totalPrice()
   },
+  //编辑提交按钮
+  change(){
+
+  },
+  //选择款式
+  changeframe(e){
+    console.log(e.currentTarget.dataset.index);
+    this.setData({
+      frameindex : e.currentTarget.dataset.index
+    })
+  },
   //编辑
   editor(e){
     console.log(e,123);
@@ -62,10 +75,18 @@ Page({
     var lensid = e.currentTarget.dataset.lensid
     app.http('/getdetail', { id:id}).then(res=>{
       console.log(res,'眼镜');
+      var type = res.data.typelist.map((v,k)=>{
+        return v.type;
+      })
+      var typeimage = res.data.typelist.map((v,k)=>{
+        return v.typeimage;
+      })
+      console.log(type,'dada');
       this.setData({
         show:true,
-        typelist:res.data.typelist,
-      
+        // typelist:res.data.typelist,
+        type : type,
+        typeimage : typeimage
       })
       
     })
@@ -90,9 +111,13 @@ Page({
   },
   //计算编辑窗口的选项
   check(){
-    // var 
-    // var frameindex = this.data.typelist.indexOf(this.data.frametype)
-    // console.log(frameindex,'213213');
+     var frameindex = this.data.type.indexOf(this.data.frametype)
+     var title = this.data.list[frameindex].glassName
+     this.setData({
+      frameindex : frameindex,
+      title:title
+     })
+    console.log(frameindex,'213213');
     // if(frameindex){
 
     // }

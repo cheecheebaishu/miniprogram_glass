@@ -31,11 +31,35 @@
       </view>
     </scroll-view>
   </view>
-  <van-popup show="{{ show }}" position="bottom" round closeable close-icon="close" custom-style="height: 50%;" bind:close="onClose">
-    <view>
-      <image class="img" wx:key="index" wx:for="{{typelist}}" src="{{item.typeimage}}" wx:if='{{frameindex==index? true:false}}'  data-index="{{index}}"></image>
+  <van-popup show="{{ show }}" position="bottom" round closeable close-icon="close" custom-style="height: 70%;" bind:close="onClose">
+    <view class="tanchuang">
+      <view class="popupcontain">
+        <view>
+          <image class="img" wx:key="index" wx:for="{{typeimage}}" src="{{item}}" wx:if='{{frameindex==index? true:false}}' data-index="{{index}}"></image>
+        </view>
+        <text class="titelname">{{title}}</text>
+      </view>
+      <view class='up'>
+        <text class='reduce {{item.count==1?"prohibit":""}}' catchtap='reduceFun' data-item="{{item}}">-</text>
+        <input catchtap="none" type="number" value='{{item.count}}'></input>
+        <text class="add" catchtap='plusFun' data-item="{{item}}">+</text>
+      </view>
+      <scroll-view scroll-y class=".scroll">
+        <text style="margin-left:20px;">款式：</text>
+        <view class="typelists">
+          <view class='typelist {{frameindex==index?" active":""}}' bind:tap="changeframe" wx:for="{{type}}" wx:key="index" data-index='{{index}}'>
+            {{item}}
+          </view>
+        </view>
+        <text style="margin-left:20px;">配镜：</text>
+        <view class="typelists">
+          <view class='typelist {{frameindex==index?" active":""}}' bind:tap="changeframe" wx:for="{{lenslist}}" wx:key="index" data-index='{{index}}' style="height: 50px;">
+            <text style="font-size: small;">{{item.lensbrand}}{{item.lensname}}</text>
+          </view>
+        </view>
+      </scroll-view>
+      <view bind:tap="change" class='btn1' style='height:10vh'><text>确定</text></view>
     </view>
-    <view></view>
   </van-popup>
   <view class='bottom' style='height:10vh'>
     <view class='left'>

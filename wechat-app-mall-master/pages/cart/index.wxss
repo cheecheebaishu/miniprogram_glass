@@ -63,7 +63,9 @@
   flex-grow: 1;
   font-size: 14px;
 }
-
+.tanchuang{
+  position: relative;
+}
 .list .content .title{
   height: 44px;
   overflow: hidden;
@@ -81,10 +83,68 @@
   -webkit-box-orient: vertical;
 }
 .img{
+  width: 84px;
+  height: 84px;
+}
+.btn1{
+        left: 0;
+	      position: fixed;
+        bottom: 0;
+        /* top 0 就是顶部 */
+	      width: 100%;
+        z-index: 100;
+        background: rgb(65, 61, 60);
+        display: flex;
+        justify-content: center;    
+}
+.btn1>text:first-of-type{
+  margin-top: 10px;
+font-size: 25px;
+color: #FFFFFF;
+}
+
+.scroll{
+  height: 300px;
+}
+.popupcontain{
+  position: static;
+  display: flex;
+  flex-wrap:wrap;
+  justify-content:flex-start;
+}
+.popupcontain>view:first-of-type {
   flex: 0 1 auto;
   width: 84px;
   height: 84px;
-  margin-top:-15px;
+  margin-left: 10px;
+  
+}
+.typelists{
+  /* border-top: 1px solid #bdb9b9; */
+  display: flex;
+  width: 100%;
+  /* height: 80px; */
+}
+.active{
+  border: 2px solid #f32d2d !important;
+}
+.typelist{
+  /* display: flex; */
+  border: 2px solid #bdb9b9;
+  width: 70px;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-left: 20px;
+  height: 35px;
+  text-align: center;
+}
+.titelname{
+  width: 230px;
+  margin-top:20px;
+  margin-left: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
 }
 .popup{
   position: fixed;
@@ -156,13 +216,17 @@
 }
 .up{
   display: flex;
-  width: 50%;
+  justify-content:flex-end;
+  width: 40%;
   line-height: 28px;
   text-align: center;
   border: 1px solid #e0dfdf;
   border-radius: 5%;
-  height: 32px !important;
-  margin: 5px 0;
+  height: 35px !important;
+  position: absolute;
+  right: 10px;
+  top: 70px;
+  
 }
 .up .reduce{
   border-right-width:1px;
